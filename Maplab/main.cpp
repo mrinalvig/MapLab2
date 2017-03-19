@@ -1,4 +1,4 @@
-#include <iostream>
+    #include <iostream>
 #include <string>
 #include "Map.h"
 using namespace std;
@@ -84,11 +84,39 @@ void GoSouth(Map &map)
 }
 void GoEast(Map &map)
 {
-	//TODO Implement this
+	system("cls");
+	if (map.CurrentLocation->East == nullptr)
+	{
+
+		cout << "You haven't been here before.  Enter a Name: ";
+		string newName;
+		cin >> newName;
+
+		map.CurrentLocation->East = new Location(newName);
+		map.CurrentLocation->East->West = map.CurrentLocation;
+	}
+
+	map.CurrentLocation = map.CurrentLocation->East;
+	cout << "You are now at " + map.CurrentLocation->getName() << endl;
+	map.Path.push(map.CurrentLocation);
 }
 void GoWest(Map &map)
 {
-	//TODO Implement this
+	system("cls");
+	if (map.CurrentLocation->West == nullptr)
+	{
+
+		cout << "You haven't been here before.  Enter a Name: ";
+		string newName;
+		cin >> newName;
+
+		map.CurrentLocation->West = new Location(newName);
+		map.CurrentLocation->West->East = map.CurrentLocation;
+	}
+
+	map.CurrentLocation = map.CurrentLocation->West;
+	cout << "You are now at " + map.CurrentLocation->getName() << endl;
+	map.Path.push(map.CurrentLocation);
 }
 void PathToHome(Map &map)
 {
