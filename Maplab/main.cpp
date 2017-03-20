@@ -120,5 +120,12 @@ void GoWest(Map &map)
 }
 void PathToHome(Map &map)
 {
-
+	if (map.Path.size() > 0)
+	{
+		for (int i = 0; i < map.Path.size(); i++)
+		{
+			cout << map.Path.top()->getName() << endl;
+			map.Path.pop();
+		}
+	}
 }

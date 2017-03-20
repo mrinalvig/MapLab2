@@ -8,7 +8,6 @@ private:
 public:
 	Location(std::string name);
 	~Location();
-
 	std::string getName();
 
 	Location *North = nullptr;
