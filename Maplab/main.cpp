@@ -40,6 +40,7 @@ int main()
 		system("pause");
 	}
 
+	map.coordinates.emplace("0,0", map.CurrentLocation->getName());
 
 	system("pause");
 	return 0;
@@ -120,12 +121,9 @@ void GoWest(Map &map)
 }
 void PathToHome(Map &map)
 {
-	if (map.Path.size() > 0)
+	for (int i = 0; i <= map.Path.size(); i++)
 	{
-		for (int i = 0; i < map.Path.size(); i++)
-		{
 			cout << map.Path.top()->getName() << endl;
 			map.Path.pop();
-		}
 	}
 }

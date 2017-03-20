@@ -1,5 +1,6 @@
 #pragma once
 #include "Location.h"
+#include <unordered_map>
 #include <stack>
 class Map
 {
@@ -9,6 +10,11 @@ public:
 	~Map();	
 
 	Location * CurrentLocation = nullptr;
-	std::stack<Location *> Path;
+	std::stack<Location *> Path; 
+
+	std::unordered_map <std::string, std::string> coordinates;
+
+	
+
 };
 
