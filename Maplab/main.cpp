@@ -76,6 +76,8 @@ void GoNorth(Map &map)
 		}
 	}
 	map.CurrentLocation = map.CurrentLocation->North;
+	map.Move(newLocation);
+	map.coordinates.emplace("(" + std::to_string(currentX) + "," + std::to_string(currentY + 1) + ")", newLocation);
 	cout << map.CurrentLocation->getName() << endl;
 }
 void GoSouth(Map &map)
@@ -108,6 +110,7 @@ void GoSouth(Map &map)
 	}
 
 	map.CurrentLocation = map.CurrentLocation->South;
+	map.Move(newLocation);
 	cout <<  map.CurrentLocation->getName() << endl;
 }
 void GoEast(Map &map)
@@ -140,6 +143,7 @@ void GoEast(Map &map)
 	}
 
 	map.CurrentLocation = map.CurrentLocation->East;
+	map.Move(newLocation);
 	cout << "You are now at " + map.CurrentLocation->getName() << endl;
 }
 void GoWest(Map &map)
@@ -172,6 +176,7 @@ void GoWest(Map &map)
 	}
 
 	map.CurrentLocation = map.CurrentLocation->West;
+	map.Move(newLocation);
 	cout << "You are now at " + map.CurrentLocation->getName() << endl;
 }
 
