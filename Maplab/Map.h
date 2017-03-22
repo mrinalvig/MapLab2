@@ -5,14 +5,15 @@
 class Map
 {
 private:	
+	std::unordered_map <std::string, Location *> coordinates;
 public:
 	Map(std::string startingLocationName);
 	~Map();	
 
 	Location * CurrentLocation = nullptr;
 	std::stack<Location *> Path; 
-
-	std::unordered_map <std::string, std::string> coordinates;
+	Location * LookupLocationOnMap(int x, int y);
+	
 
 	
 
