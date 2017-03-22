@@ -17,6 +17,7 @@ public:
 	Location *South = nullptr;
 	Location *East = nullptr;
 	Location *West = nullptr;
+	std::string DisplayLocationInfo();
 
 	int getX() {return _x;}
 	int getY() {return _y;}
