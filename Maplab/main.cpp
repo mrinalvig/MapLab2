@@ -7,7 +7,8 @@ void GoNorth(Map &map);
 void GoSouth(Map &map);
 void GoEast(Map &map);
 void GoWest(Map &map);
-//void PathToHome(Map &map);
+void PathToHome(Map &map);
+void GettingHere(Map &map);
 
 int main()
 {
@@ -22,7 +23,8 @@ int main()
 		cout << "3) Go East" << endl;
 		cout << "4) Go South" << endl;
 		cout << "5) Go west" << endl;
-		//cout << "6) Path To Home" << endl;
+		cout << "6) Path To Home" << endl;
+		cout << "7) How Did I Get Here?" << endl;
 		cout << "0) Exit" << endl;		
 		cin >> choice;
 
@@ -33,7 +35,8 @@ int main()
 		case 3: GoEast(map); break;
 		case 4: GoSouth(map); break;
 		case 5: GoWest(map); break;
-		//case 6: PathToHome(map); break;
+		case 6: PathToHome(map); break;
+		case 7: GettingHere(map); break;
 		default: break;
 		}
 
@@ -68,18 +71,24 @@ void GoNorth(Map &map)
 
 			map.CurrentLocation->North = new Location(newName, newX, newY);
 			map.CurrentLocation->North->South = map.CurrentLocation;
+			map.Path.push(map.CurrentLocation);
+			map.Order.push(map.CurrentLocation);
 			
+			map.CurrentLocation = map.CurrentLocation->North;
+			cout << map.CurrentLocation->getName() << endl;
 		}
 		else
 		{
-			cout << "You've been here bofore. " << existing->DisplayLocationInfo();
+			map.CurrentLocation->South = map.CurrentLocation;
+			map.CurrentLocation->South->North = map.CurrentLocation;
+			map.Path.push(map.CurrentLocation);
+			map.Order.push(map.CurrentLocation);
+			cout << "You've been here before. " << existing->DisplayLocationInfo();
 		}
 	}
-	map.CurrentLocation = map.CurrentLocation->North;
-	map.Move(newLocation);
-	map.coordinates.emplace("(" + std::to_string(currentX) + "," + std::to_string(currentY + 1) + ")", newLocation);
-	cout << map.CurrentLocation->getName() << endl;
+	
 }
+
 void GoSouth(Map &map)
 {
 	system("cls");
@@ -102,16 +111,22 @@ void GoSouth(Map &map)
 
 			map.CurrentLocation->South = new Location(newName, newX, newY);
 			map.CurrentLocation->South->North = map.CurrentLocation;
+			map.Path.push(map.CurrentLocation);
+			map.Order.push(map.CurrentLocation);
+
+			map.CurrentLocation = map.CurrentLocation->South;
+			cout << map.CurrentLocation->getName() << endl;
+			
 		}
 		else
 		{
-			cout << "You've been here bofore. " << existing->DisplayLocationInfo();
+			map.CurrentLocation->South = map.CurrentLocation;
+			map.CurrentLocation->South->North = map.CurrentLocation;
+			map.Path.push(map.CurrentLocation);
+			map.Order.push(map.CurrentLocation);
+			cout << "You've been here before. " << existing->DisplayLocationInfo();
 		}
 	}
-
-	map.CurrentLocation = map.CurrentLocation->South;
-	map.Move(newLocation);
-	cout <<  map.CurrentLocation->getName() << endl;
 }
 void GoEast(Map &map)
 {
@@ -135,17 +150,24 @@ void GoEast(Map &map)
 
 			map.CurrentLocation->East = new Location(newName, newX, newY);
 			map.CurrentLocation->East->West = map.CurrentLocation;
+			map.Path.push(map.CurrentLocation);
+			map.Order.push(map.CurrentLocation);
+
+			map.CurrentLocation = map.CurrentLocation->East;
+			cout << map.CurrentLocation->getName() << endl;
+
 		}
 		else
 		{
-			cout << "You've been here bofore. " << existing->DisplayLocationInfo();
+			map.CurrentLocation->East = map.CurrentLocation;
+			map.CurrentLocation->East->West = map.CurrentLocation;
+			map.Path.push(map.CurrentLocation);
+			map.Order.push(map.CurrentLocation);
+			cout << "You've been here before. " << existing->DisplayLocationInfo();
 		}
 	}
-
-	map.CurrentLocation = map.CurrentLocation->East;
-	map.Move(newLocation);
-	cout << "You are now at " + map.CurrentLocation->getName() << endl;
 }
+
 void GoWest(Map &map)
 {
 	system("cls");
@@ -168,23 +190,44 @@ void GoWest(Map &map)
 
 			map.CurrentLocation->West = new Location(newName, newX, newY);
 			map.CurrentLocation->West->East = map.CurrentLocation;
+			map.Path.push(map.CurrentLocation);
+			map.Order.push(map.CurrentLocation);
+
+			map.CurrentLocation = map.CurrentLocation->West;
+			cout << map.CurrentLocation->DisplayLocationInfo() << endl;
+
 		}
 		else
 		{
-			cout << "You've been here bofore. " << existing->DisplayLocationInfo();
+			map.CurrentLocation->West = map.CurrentLocation;
+			map.CurrentLocation->West->East = map.CurrentLocation;
+			map.Path.push(map.CurrentLocation);
+			map.Order.push(map.CurrentLocation);
+			cout << "You've been here before. " << existing->DisplayLocationInfo();
 		}
 	}
-
-	map.CurrentLocation = map.CurrentLocation->West;
-	map.Move(newLocation);
-	cout << "You are now at " + map.CurrentLocation->getName() << endl;
+	
 }
 
-/*void PathToHome(Map &map)
+void PathToHome(Map &map)
 {
-	for (int i = 0; i <= map.Move.Path.size(); i++)
+	cout << "Your directions to get back home are: " << endl;
+
+	for (int i = 0; i <= map.Path.size(); i++)
 	{
-			cout << map.Move.Path.top()->getName() << endl;
-			map.Move.Path.pop();
+		cout << "Step " << i + 1 << ": " << map.Path.top()->getName() << endl;
+		map.Path.pop();
 	}
-} */
+}
+
+void GettingHere(Map &map)
+{
+	cout << "You got here with these steps:" << endl;
+
+	for (int i = 0; i <= map.Order.size(); i++)
+	{
+		cout << "Step " << i + 1 << ": " << map.Order.front()->getName() << endl;
+		map.Order.pop();
+	}
+
+}

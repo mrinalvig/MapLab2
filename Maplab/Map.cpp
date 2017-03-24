@@ -15,12 +15,6 @@ Map::~Map()
 {
 }
 
-void Map::Move(Location * newLocation)
-{
-	Path.push(newLocation);
-	CurrentLocation = newLocation;
-}
-
 Location * Map::LookupLocationOnMap(int x, int y)
 {
 	std::string hash = "(" + std::to_string(x) + "," + std::to_string(y) + ")";

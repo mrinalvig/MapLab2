@@ -2,17 +2,19 @@
 #include "Location.h"
 #include <unordered_map>
 #include <stack>
+#include <queue>
 class Map
 {
 private:	
-	std::stack<Location *> Path;
+	
 public:
 	Map(std::string startingLocationName);
 	~Map();	
 
 	std::unordered_map <std::string, Location *> coordinates;
+	std::stack<Location *> Path;
+	std::queue<Location *> Order;
 	Location * CurrentLocation = nullptr; 
-	void Move(Location *newLocation);
 	Location * LookupLocationOnMap(int x, int y);
 	
 
