@@ -30,7 +30,7 @@ int main()
 
 		switch (choice) 
 		{
-		case 1: cout << map.CurrentLocation->getName() << endl; break;
+		case 1: cout << "Current Location is " << map.CurrentLocation->getName() << endl; break;
 		case 2: GoNorth(map); break;
 		case 3: GoEast(map); break;
 		case 4: GoSouth(map); break;
@@ -75,7 +75,7 @@ void GoNorth(Map &map)
 			map.Order.push(map.CurrentLocation);
 			
 			map.CurrentLocation = map.CurrentLocation->North;
-			cout << map.CurrentLocation->getName() << endl;
+			cout << "Location is: " << map.CurrentLocation->getName() << endl;
 		}
 		else
 		{
@@ -115,7 +115,7 @@ void GoSouth(Map &map)
 			map.Order.push(map.CurrentLocation);
 
 			map.CurrentLocation = map.CurrentLocation->South;
-			cout << map.CurrentLocation->getName() << endl;
+			cout << "Location is: " << map.CurrentLocation->getName() << endl;
 			
 		}
 		else
@@ -154,7 +154,7 @@ void GoEast(Map &map)
 			map.Order.push(map.CurrentLocation);
 
 			map.CurrentLocation = map.CurrentLocation->East;
-			cout << map.CurrentLocation->getName() << endl;
+			cout << "Location is: " << map.CurrentLocation->getName() << endl;
 
 		}
 		else
@@ -194,7 +194,7 @@ void GoWest(Map &map)
 			map.Order.push(map.CurrentLocation);
 
 			map.CurrentLocation = map.CurrentLocation->West;
-			cout << map.CurrentLocation->DisplayLocationInfo() << endl;
+			cout << "Location is: " << map.CurrentLocation->getName() << endl;
 
 		}
 		else
@@ -215,7 +215,7 @@ void PathToHome(Map &map)
 
 	for (int i = 0; i <= map.Path.size(); i++)
 	{
-		cout << "Step " << i + 1 << ": " << map.Path.top()->getName() << endl;
+		cout << "Step " << i + 1 << ": Go to location " << map.Path.top()->getName() << endl;
 		map.Path.pop();
 	}
 }

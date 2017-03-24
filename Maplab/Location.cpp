@@ -12,7 +12,7 @@ Location::~Location()
 
 std::string Location::getName()
 {
-	return "Location is " +_name+ " (" +std::to_string(_x)+ ", " + std::to_string(_y)+ ")" + "\n";
+	return  _name+ " (" +std::to_string(_x)+ ", " + std::to_string(_y)+ ")" + "\n";
 }
 
 std::string Location::DisplayLocationInfo()
