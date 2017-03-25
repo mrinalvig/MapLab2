@@ -1,4 +1,4 @@
-    #include <iostream>
+#include <iostream>
 #include <string>
 #include "Map.h"
 using namespace std;
@@ -86,7 +86,6 @@ void GoNorth(Map &map)
 			cout << "You've been here before. " << existing->DisplayLocationInfo();
 		}
 	}
-	
 }
 
 void GoSouth(Map &map)
@@ -116,7 +115,6 @@ void GoSouth(Map &map)
 
 			map.CurrentLocation = map.CurrentLocation->South;
 			cout << "Location is: " << map.CurrentLocation->getName() << endl;
-			
 		}
 		else
 		{
@@ -155,7 +153,6 @@ void GoEast(Map &map)
 
 			map.CurrentLocation = map.CurrentLocation->East;
 			cout << "Location is: " << map.CurrentLocation->getName() << endl;
-
 		}
 		else
 		{
@@ -203,7 +200,7 @@ void GoWest(Map &map)
 			map.CurrentLocation->West->East = map.CurrentLocation;
 			map.Path.push(map.CurrentLocation);
 			map.Order.push(map.CurrentLocation);
-			cout << "You've been here before. " << existing->DisplayLocationInfo();
+			cout << "You've been here before. " << existing->DisplayLocationInfo() << endl;
 		}
 	}
 	
@@ -211,7 +208,7 @@ void GoWest(Map &map)
 
 void PathToHome(Map &map)
 {
-	cout << "Your directions to get back home are: " << endl;
+	cout << "Your directions to get back home are: \n" << endl;
 
 	for (int i = 0; i <= map.Path.size(); i++)
 	{
